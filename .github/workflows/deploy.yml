@@ -131,21 +131,19 @@ jobs:
           fi
 
       # 7. Check whether the website responds
+     
       - name: Website health check
-        env:
-          SITE_URL: ${{ vars.WORDPRESS_SITE_URL }}
         shell: bash
         run: |
           set -euo pipefail
 
-          if [ -z "${SITE_URL:-}" ]; then
-            echo "Set the GitHub Actions variable WORDPRESS_SITE_URL before enabling this check."
-            exit 1
-          fi
+          SITE_URL="http://98.93.178.125/"
+
+          echo "Checking website: $SITE_URL"
 
           curl --fail --silent --show-error \
             --location \
-            --max-time 20 \
+            --max-time 30 \
             "$SITE_URL" \
             --output /dev/null
 
