@@ -31,6 +31,9 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::110753466589:role/GitHubWordPressDeployRole
           aws-region: us-east-1
+          role-skip-session-tagging: true
+          action-timeout-s: 60
+
 
       - name: Deploy theme through SSM
         env:
